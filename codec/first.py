@@ -1,7 +1,9 @@
 # coding=utf-8
 import os
-import string
+import getpass
+
 matrice = input("Entrez le nom de la matric à selectionner : ")
 print(matrice)
-user = os.getusername()
+user = getpass.getuser()
+
 print(user)
