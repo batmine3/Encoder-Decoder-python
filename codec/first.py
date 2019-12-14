@@ -3,3 +3,5 @@ import os
 import string
 matrice = input("Entrez le nom de la matric à selectionner : ")
 print(matrice)
+user = os.getusername()
+print(user)
