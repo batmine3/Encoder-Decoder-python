@@ -28,6 +28,9 @@ print(matrixSize)
 workFile = input("Entrez le nom du fichier : ")
 fileOpen = open("file_encode/"+workFile, "rb")
 print(fileOpen.read())
+fileExtension = workFile.split(".")
+fileExtension = fileExtension[1]
+print(fileExtension)
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
 
