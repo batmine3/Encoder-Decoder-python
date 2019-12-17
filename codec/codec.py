@@ -19,7 +19,7 @@ end = workKey.index("]")
 key = workKey[begin+1:end]
 key = key.split(" ")
 print(key)
-#compter la longueur de la cle pour determiner la taille de la matrice G4 ou G5 ou G6 etc ... afin de rendre le programme utilisable pour toute les matrices
+#compter la longueur de la cle pour determiner la taille de la matrice G4 ou G5 ou G6 etc ... afin de rendre le programme utilisable pour toutes les matrices
 
 #file
 workFile = input("Entrez le nom du fichier : ")
