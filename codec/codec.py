@@ -13,6 +13,25 @@
 
 import os
 
+q = 0
+while (q == 0):
+    x = input("Select you option : \n 1 - Decode file \n 2 - Encode file \n 3 - Create matrix \n 4 - Quit \n\n Your option : ")
+    if (x == "1"):
+        print("some code")
+    elif (x == "2"):
+        print("some other code")
+    elif (x == "4"): 
+        a = input("Are you sure want exit ? (y/n) : ")
+        if(a == "y" or a == "Y" or a == "yes" or a == "Yes" or a == "YES"):
+            q = 1
+        else:
+            q = 0
+    else:
+        print("invalid choice")
+
+
+"""
+
 #matrix
 matrice = input("Entrez le nom de la matrice a selectionner : ")
 keyOpen = open("key/"+matrice+".txt", "r")
@@ -55,3 +74,6 @@ while (i < matrixSize):
 print(encodeKey)
 
 #output
+
+
+"""
