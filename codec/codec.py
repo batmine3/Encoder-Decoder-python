@@ -42,12 +42,16 @@ print(fileExtension)
 
 #encode Key for decoding
 #boucler pour le nombre d'occurence en fonction de la taille de la matrice
+#recuperation de la matrice identitee
 print("Entrez la cle d'encodage de la matrice : ")
-G1 = input("1 : ")
-G2 = input("2 : ")
-G3 = input("3 : ")
-G4 = input("4 : ")
-encodeKey = (G1, G2, G3, G4)
+c = 0
+i = 0
+encodeKey = [0] * matrixSize
+while (i < matrixSize):
+    c += 1
+    G = input("column "+str(c)+" : ")
+    encodeKey[i] = G
+    i += 1
 print(encodeKey)
 
 #output
