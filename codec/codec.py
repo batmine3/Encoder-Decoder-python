@@ -11,8 +11,21 @@
 #Add creation de matrice
 import os
 
-#matrix
-def matrixSelection(matrixUsed):
+#matrix encode
+def matrixEncode(matrixUsed):
+    keyOpen = open("key/"+matrixUsed+".txt", "r")
+    workKey = keyOpen.read()
+    keyOpen.close()
+    print(workKey)
+    begin = workKey.index("[")
+    end = workKey.index("]")
+    key = workKey[begin+1:end]
+    key = key.split(" ")
+    matrixSize = len(key)
+    print(matrixSize)
+
+#matrix decode
+def matrixDecode(matrixUsed):
     keyOpen = open("key/"+matrixUsed+".txt", "r")
     workKey = keyOpen.read()
     keyOpen.close()
@@ -35,6 +48,10 @@ def fileEncode(fileUsed):
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
 
+#file_decode
+def fileDecode(fileUsed):
+    ""
+
 #matrix ID
 def matrixID(matrixSize):
     print("Entrez la cle d'encodage de la matrice : ")
@@ -47,7 +64,15 @@ def matrixID(matrixSize):
         encodeKey[i] = G
         i += 1
     print(encodeKey)
-#recuperation de la matrice identitee  
+#recuperation de la matrice identitee
+
+#matrix calculation
+def matrixMul():
+    ""
+
+#key creation
+def keyCreation():
+    ""
 
 q = 0
 while (q == 0):
@@ -55,11 +80,15 @@ while (q == 0):
     if (x == "1"):
         print("encode file : \n")
         matrix = input("Entrez le nom de la matrice a selectionner : ")
-        matrixSelection(matrix)
+        matrixEncode(matrix)
         file = input("Entrez le nom du fichier : ")
         fileEncode(file)
     elif (x == "2"):
         print("decode files : \n")
+        matrix = input("Entrez le nom de la matrice a selectionner : ")
+        matrixDecode(matrix)
+        file = input("Entrez le nom du fichier : ")
+        fileEncode(file)
     elif (x == "3"):
         print("creation matrix : \n")
     elif (x == "4"): 
