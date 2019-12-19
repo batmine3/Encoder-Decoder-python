@@ -50,7 +50,11 @@ def fileEncode(fileUsed):
 
 #file_decode
 def fileDecode(fileUsed):
-    ""
+    fileOpen = open("file_decode/"+fileUsed, "rb")
+    workFile = fileOpen.read()
+    fileExtension = fileUsed.split(".")
+    fileExtension = fileExtension[1]
+    print(fileExtension)
 
 #matrix ID
 def matrixID(matrixSize):
