@@ -7,6 +7,10 @@
 # Begin: 14/12/2019
 # End: 
 
+# /!\ ne pas oublier d'enlever les print() de debug a la fin /!\
+
+#Add creation de matrice
+
 import os
 
 #matrix
