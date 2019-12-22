@@ -40,10 +40,14 @@ def matrixDecode(matrixUsed):
 
 #file_encode
 def fileEncode(fileUsed):
-    fileOpen = open("file_encode/"+fileUsed, "rb")
-    workFile = fileOpen.read()
-    fileExtension = fileUsed.split(".")
-    fileExtension = fileExtension[1]
+    fileOpen = open("file_encode/"+fileUsed, "rb")  #ouverture du fichier
+    workFile = fileOpen.read()                      #passage des data dans une variable
+    contenerFile = list(workFile)                   #conversion en list
+    bits = map(bytes, contenerFile)                 #conversion en bytes
+    print(bits)
+
+    fileExtension = fileUsed.split(".")             #recuperation de l'extension
+    fileExtension = fileExtension[1]                #
     print(fileExtension)
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
@@ -55,7 +59,7 @@ def fileDecode(fileUsed):
     fileExtension = fileUsed.split(".")
     fileExtension = fileExtension[1]
     print(fileExtension)
-
+    
 #matrix ID
 def matrixID(matrixSize):
     print("Entrez la cle d'encodage de la matrice : ")
