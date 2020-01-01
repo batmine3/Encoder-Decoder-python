@@ -57,9 +57,12 @@ def fileEncode(fileUsed, matrixSize):
     ourDict = {}
     iteration = workFileLength / matrixSize
     if iteration > round(iteration):
-        iteration += 1
+        iteration = round(iteration) + 1
+    else:
+        iteration = round(iteration)
     for i in range( int(iteration) ):
         ourDict["X" + str(i)] = getValues( int(iteration), matrixSize, i, contenerFile) # 3 4 {0, 1, 2}
+        print(i)
 
     for i in ourDict:
         print(str(i) + " = " + str(ourDict[i]) )
@@ -67,21 +70,20 @@ def fileEncode(fileUsed, matrixSize):
 #compter la taille de la liste pour la longueur de la boucle
 
 
-def getValues(numberOfValues, matrixSize, endValue, contenerFile):
+def getValues(numberOfValues, matrixSize, endValue, contenerFile):                      # 3 4 1
     if endValue != 0:
-        endValue = matrixSize * endValue - 1
-        startValue = endValue * matrixSize  
+        endValue = matrixSize * (endValue + 1)                                          # 
+        startValue = endValue * matrixSize
     elif endValue == 0:
         startValue = 0
-        endValue = matrixSize
+        endValue = matrixSize                                                           # 4
     result = ""
-    j = startValue
-    while (j < endValue):
+    while (startValue < endValue):
         if result == "":
-            result = result + "" + str(contenerFile[j])
+            result = result + "" + str(contenerFile[startValue])
         else:
-            result = result + ", " + str(contenerFile[j])
-        j += 1
+            result = result + ", " + str(contenerFile[startValue])
+        startValue += 1
     return result
 
 
