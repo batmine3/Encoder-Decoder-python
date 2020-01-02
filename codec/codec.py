@@ -81,7 +81,7 @@ def getValues(workFileLength, matrixSize, endValue, contenerFile):              
     result = ""
     print("startValue = " + str(startValue))
     print("endValue = " + str(endValue))
-    while (startValue < endValue and startValue <= workFileLength):
+    while (startValue < endValue and startValue < workFileLength):
         print("startValue = " + str(startValue))
         print("endValue = " + str(endValue))
         if result == "":
