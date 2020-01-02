@@ -54,6 +54,11 @@ def fileEncode(fileUsed, matrixSize):
     #print(workFileLength)
     #print(contenerFile)
     
+    for i in range(workFileLength):
+        contenerFile[i] = binConverter(contenerFile, workFileLength)
+
+
+
     ourDict = {}
     iteration = workFileLength / matrixSize
     if iteration > round(iteration):
@@ -63,11 +68,21 @@ def fileEncode(fileUsed, matrixSize):
     for i in range( int(iteration) ):
         ourDict["X" + str(i)] = getValues( workFileLength, matrixSize, i, contenerFile) # 3 4 {0, 1, 2}
         
+    binConverter(contenerFile, workFileLength)
 
     for i in ourDict:
         print(str(i) + " = " + str(ourDict[i]) )
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
+
+
+def binConverter(contenerFile, workFileLength):
+    for i in range(workFileLength):
+        bits = ""
+        bits = bits + str(bin(contenerFile[i]))
+        return bits
+
+
 
 
 def getValues(workFileLength, matrixSize, endValue, contenerFile):                      # 3 4 1
@@ -80,9 +95,9 @@ def getValues(workFileLength, matrixSize, endValue, contenerFile):              
     result = ""
     while (startValue < endValue and startValue < workFileLength):
         if result == "":
-            result = result + "" + str(contenerFile[startValue])
+            result = result + "" + str(bin(contenerFile[startValue]))
         else:
-            result = result + ", " + str(contenerFile[startValue])
+            result = result + ", " + str(bin(contenerFile[startValue]))
         startValue += 1
     return result
 
