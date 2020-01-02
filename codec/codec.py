@@ -45,14 +45,14 @@ def fileEncode(fileUsed, matrixSize):
     workFile = fileOpen.read()                      #passage des data dans une variable
     contenerFile = list(workFile)                   #conversion en list
     bits = map(bytes, contenerFile)                 #conversion en bytes
-    print(bits)
+    #print(bits)
 
     fileExtension = fileUsed.split(".")             #recuperation de l'extension
     fileExtension = fileExtension[1]                #
-    print(fileExtension)
+    #print(fileExtension)
     workFileLength = len(workFile)
-    print(workFileLength)
-    print(contenerFile)
+    #print(workFileLength)
+    #print(contenerFile)
     
     ourDict = {}
     iteration = workFileLength / matrixSize
@@ -61,7 +61,6 @@ def fileEncode(fileUsed, matrixSize):
     else:
         iteration = round(iteration)
     for i in range( int(iteration) ):
-        print(i)
         ourDict["X" + str(i)] = getValues( workFileLength, matrixSize, i, contenerFile) # 3 4 {0, 1, 2}
         
 
@@ -79,11 +78,7 @@ def getValues(workFileLength, matrixSize, endValue, contenerFile):              
         startValue = 0
         endValue = matrixSize                                                           # 4
     result = ""
-    print("startValue = " + str(startValue))
-    print("endValue = " + str(endValue))
     while (startValue < endValue and startValue < workFileLength):
-        print("startValue = " + str(startValue))
-        print("endValue = " + str(endValue))
         if result == "":
             result = result + "" + str(contenerFile[startValue])
         else:
