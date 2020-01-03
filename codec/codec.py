@@ -53,10 +53,13 @@ def fileEncode(fileUsed, matrixSize):
     workFileLength = len(workFile)
     #print(workFileLength)
     #print(contenerFile)
-    
+    bits = []
     for i in range(workFileLength):
         contenerFile[i] = bin(contenerFile[i])
+        bits = bits + list(contenerFile[i])
 
+    #print(bits)
+    deleteBinary(bits)
 
     ourDict = {}
     iteration = workFileLength / matrixSize
@@ -75,14 +78,24 @@ def fileEncode(fileUsed, matrixSize):
 #compter la taille de la liste pour la longueur de la boucle
 
 
+def deleteBinary(bits):                                             #fonction pour supprimer les identifiants binaires ('0b')
+    size = len(bits)
+    for i in range(size):
+        if i < size and i + 1 < size:
+            delete = "" + str(bits[i]) + str(bits[i + 1])
+            #print(delete)
+            #if delete == '0b':
+                #delete de la list
+                #remove(delete)
+            
 
-def getValues(workFileLength, matrixSize, endValue, contenerFile):                      # 3 4 1
+def getValues(workFileLength, matrixSize, endValue, contenerFile):                      # inutile à refaire
     if endValue != 0:
         startValue = endValue * matrixSize
-        endValue = matrixSize * (endValue + 1)                                          # 
+        endValue = matrixSize * (endValue + 1)
     elif endValue == 0:
         startValue = 0
-        endValue = matrixSize                                                           # 4
+        endValue = matrixSize                                                           
     result = ""
     while (startValue < endValue and startValue < workFileLength):
         if result == "":
