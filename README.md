@@ -27,4 +27,5 @@ En tant qu'utilisateur, je dois pouvoir exécuter le script python afin de pouvo
 D'un point de vue du traitement, il faut ouvrir le fichier en mode binaire pour récupérer les différents octets, appliquer les colonnes de la matrice identité afin de récupérer les valeurs initiales.  
 
 Le script doit permettre d'ouvrir un fichier dont l'extension se termine par "c", appliquer à l'inverse et récupérer le fichier final avec un "d" à la fin.  
-*(Exemple: test.txtc --> test.txtcd || test.txt [ne garde pas l'historique] )*
+*(Exemple: test.txtc -->   test.txtcd* ou *test.txt --> [ne garde pas l'historique] )*
+
