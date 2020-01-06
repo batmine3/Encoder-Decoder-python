@@ -59,7 +59,8 @@ def fileEncode(fileUsed, matrixSize):
         bits = bits + list(contenerFile[i])
 
     #print(bits)
-    deleteBinary(bits)
+    size = len(bits)
+    deleteBinary(bits, size)
 
     ourDict = {}
     iteration = workFileLength / matrixSize
@@ -68,9 +69,9 @@ def fileEncode(fileUsed, matrixSize):
     else:
         iteration = round(iteration)
     for i in range( int(iteration) ):
-        ourDict["X" + str(i)] = getValues( workFileLength, matrixSize, i, contenerFile) # 3 4 {0, 1, 2}
+        ourDict["X" + str(i)] = getValues( size, matrixSize, i, bits) # 3 4 {0, 1, 2}
         
-    
+    print(bits)
 
     for i in ourDict:
         print(str(i) + " = " + str(ourDict[i]) )
@@ -78,18 +79,21 @@ def fileEncode(fileUsed, matrixSize):
 #compter la taille de la liste pour la longueur de la boucle
 
 
-def deleteBinary(bits):                                             #fonction pour supprimer les identifiants binaires ('0b')
-    size = len(bits)
+def deleteBinary(bits, size):                                             #fonction pour supprimer les identifiants binaires ('0b')
     for i in range(size):
         if i < size and i + 1 < size:
+            print(i)
             delete = "" + str(bits[i]) + str(bits[i + 1])
-            #print(delete)
-            #if delete == '0b':
+            if delete == '0b':
                 #delete de la list
-                #remove(delete)
+                print("LenOld = " + str(size) )
+                print("delete == " + str(delete))
+                del bits[i]
+                size = len(bits)
+                print("LenNew = " + str(size) )
             
 
-def getValues(workFileLength, matrixSize, endValue, contenerFile):                      # inutile à refaire
+def getValues(size, matrixSize, endValue, contenerFile):                      # inutile à refaire
     if endValue != 0:
         startValue = endValue * matrixSize
         endValue = matrixSize * (endValue + 1)
@@ -97,7 +101,7 @@ def getValues(workFileLength, matrixSize, endValue, contenerFile):              
         startValue = 0
         endValue = matrixSize                                                           
     result = ""
-    while (startValue < endValue and startValue < workFileLength):
+    while (startValue < endValue and startValue < size):
         if result == "":
             result = result + "" + str(contenerFile[startValue])
         else:
