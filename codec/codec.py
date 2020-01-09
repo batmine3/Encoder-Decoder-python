@@ -74,9 +74,7 @@ def fileEncode(fileUsed, matrixSize):
     for i in range( int(iteration) ):
         ourDict["X" + str(i)] = getValues( size, matrixSize, i, bits) # 3 4 {0, 1, 2}
         
-
-    for i in ourDict:
-        print("ourDict" + str(i) + " = " + str(ourDict[i]) )
+    
 
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
@@ -95,7 +93,7 @@ def deleteBinary(bits):                                             #fonction po
         else:
             i += 1
 
-def getValues(size, matrixSize, endValue, contenerFile):                      # inutile à refaire
+def getValues(size, matrixSize, endValue, contenerFile):                      
     if endValue != 0:
         startValue = endValue * matrixSize
         endValue = matrixSize * (endValue + 1)
