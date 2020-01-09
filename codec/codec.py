@@ -10,6 +10,7 @@
 # /!\ ne pas oublier d'enlever les print() de debug a la fin /!\
 #Add creation de matrice
 import os
+import numpy
 
 #matrix encode
 def matrixEncode(matrixUsed):
@@ -55,9 +56,6 @@ def fileEncode(fileUsed, matrixSize):
         contenerFile[i] = bin(contenerFile[i])
         bits = bits + list(contenerFile[i])
     
-    print("bits1 = " + str(bits))
-    
-
     
     deleteBinary(bits)
     
@@ -77,6 +75,9 @@ def fileEncode(fileUsed, matrixSize):
     for x in ourDict:
         for j in ourDict[x]:
             print(j) # affiche le contenu de ourDict[x]
+            #print matrixmultiply(a,j)
+
+
 
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
