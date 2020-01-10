@@ -13,18 +13,26 @@ import os
 import numpy
 
 #matrix encode
-def matrixEncode(matrixUsed):
+def matrixEncodeSize(matrixUsed):
     keyOpen = open("key/"+matrixUsed+".txt", "r")
     workKey = keyOpen.read()
     keyOpen.close()
-    print(workKey)
     begin = workKey.index("[")
     end = workKey.index("]")
     key = workKey[begin+1:end]
     key = key.split(" ")
     matrixSize = len(key)
-    print(matrixSize)
     return matrixSize
+
+def matrixEncode(matrixUsed):
+    keyOpen = open("key/"+matrixUsed+".txt", "r")
+    workKey = keyOpen.read()
+    keyOpen.close()
+    begin = workKey.index("[")
+    end = workKey.index("]")
+    key = workKey[begin+1:end]
+    key = key.split(" ")
+    return key
 
 #matrix decode
 def matrixDecode(matrixUsed):
@@ -41,7 +49,7 @@ def matrixDecode(matrixUsed):
     matrixID(matrixSize)
 
 #file_encode
-def fileEncode(fileUsed, matrixSize):
+def fileEncode(fileUsed, matrixSize, key):
     fileOpen = open("file_encode/"+fileUsed, "rb")  #ouverture du fichier
     workFile = fileOpen.read()                      #passage des data dans une variable
     contenerFile = list(workFile)                   #conversion en list
@@ -73,11 +81,12 @@ def fileEncode(fileUsed, matrixSize):
         ourDict["X" + str(i)] = getValues( size, matrixSize, i, bits) # 3 4 {0, 1, 2}
         
     for x in ourDict:
-        for j in ourDict[x]:
-            print(j) # affiche le contenu de ourDict[x]
-            #print matrixmultiply(a,j)
+        for value in ourDict[x]:
+            for matrix in key:
+                print(matrix ^ int(value))
 
-
+    for y in key:
+        print("matrice = " + y)
 
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
@@ -149,9 +158,10 @@ while (q == 0):
     if (x == "1"):
         print("\n encode file : \n")
         matrix = input(" Entrez le nom de la matrice a selectionner : ")
-        matrixSize = matrixEncode(matrix)
+        matrixKey = matrixEncode(matrix)
+        matrixSize = matrixEncodeSize(matrix)
         file = input(" Entrez le nom du fichier avec son extension: ")
-        fileEncode(file, matrixSize)
+        fileEncode(file, matrixSize, matrixKey)
     elif (x == "2"):
         print("\n decode files : \n")
         matrix = input(" Entrez le nom de la matrice a selectionner : ")
