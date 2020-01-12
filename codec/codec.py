@@ -50,7 +50,7 @@ def matrixDecode(matrixUsed):
 
 #file_encode
 def fileEncode(fileUsed, matrixSize, key):
-    fileOpen = open("file_encode/"+fileUsed, "rb")  #ouverture du fichier
+    fileOpen = open("file_encode/"+fileUsed, "wb+")  #ouverture du fichier
     workFile = fileOpen.read()                      #passage des data dans une variable
     contenerFile = list(workFile)                   #conversion en list
     bits = map(bytes, contenerFile)                 #conversion en bytes
@@ -82,11 +82,12 @@ def fileEncode(fileUsed, matrixSize, key):
         
     for x in ourDict:
         for value in ourDict[x]:
-            for matrix in key:
-                print(matrix ^ int(value))
-
-    for y in key:
-        print("matrice = " + y)
+            for result in value:
+                for matrix in key:
+                    for multiplier in matrix:
+                        fileContent = "" + str(int(multiplier) ^ int(result))
+                        fileOpen.write(fileContent)
+                        fileOpen.close()
 
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
