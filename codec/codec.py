@@ -10,7 +10,7 @@
 # /!\ ne pas oublier d'enlever les print() de debug a la fin /!\
 #Add creation de matrice
 import os
-import numpy
+#import binascii
 
 #matrix encode
 def matrixEncodeSize(matrixUsed):
@@ -50,7 +50,7 @@ def matrixDecode(matrixUsed):
 
 #file_encode
 def fileEncode(fileUsed, matrixSize, key):
-    fileOpen = open("file_encode/"+fileUsed, "wb+")  #ouverture du fichier
+    fileOpen = open("file_encode/"+fileUsed, "rb")  #ouverture du fichier
     workFile = fileOpen.read()                      #passage des data dans une variable
     contenerFile = list(workFile)                   #conversion en list
     bits = map(bytes, contenerFile)                 #conversion en bytes
@@ -58,7 +58,7 @@ def fileEncode(fileUsed, matrixSize, key):
     fileExtension = fileUsed.split(".")             #recuperation de l'extension
     fileExtension = fileExtension[1]                #
     workFileLength = len(workFile)
-    
+    fileOpen.close()
     bits = []
     for i in range(workFileLength):
         contenerFile[i] = bin(contenerFile[i])
@@ -79,15 +79,19 @@ def fileEncode(fileUsed, matrixSize, key):
     
     for i in range( int(iteration) ):
         ourDict["X" + str(i)] = getValues( size, matrixSize, i, bits) # 3 4 {0, 1, 2}
-        
+
+
+    fileOpen = open("file_encode/"+fileUsed+"c", "w+")
+    fileContent = ""
     for x in ourDict:
         for value in ourDict[x]:
             for result in value:
                 for matrix in key:
                     for multiplier in matrix:
-                        fileContent = "" + str(int(multiplier) ^ int(result))
-                        fileOpen.write(fileContent)
-                        fileOpen.close()
+                        fileContent = fileContent + str(int(multiplier) ^ int(result))
+    #fileContent = binascii.a2b_uu(fileContent)            
+    fileOpen.write(fileContent)
+    fileOpen.close()
 
 #decouper le fichier par segment binaire de taille Gx trouver au dessus
 #compter la taille de la liste pour la longueur de la boucle
