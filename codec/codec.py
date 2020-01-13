@@ -10,7 +10,7 @@
 # /!\ ne pas oublier d'enlever les print() de debug a la fin /!\
 #Add creation de matrice
 import os
-#import binascii
+import binascii
 
 #matrix encode
 def matrixEncodeSize(matrixUsed):
@@ -88,8 +88,21 @@ def fileEncode(fileUsed, matrixSize, key):
             for result in value:
                 for matrix in key:
                     for multiplier in matrix:
-                        fileContent = fileContent + str(int(multiplier) ^ int(result))
-    #fileContent = binascii.a2b_uu(fileContent)            
+                        fileContentTmp = fileContent + str(int(multiplier) ^ int(result))
+    fileContent = ""
+    lenght = len(fileContentTmp)
+
+    while 0 <= lenght - 1:
+        convert = ""
+        j = 0
+        for j in range(4):
+            if lenght + j < lenght:
+                convert = convert + str(fileContentTmp[lenght - j])
+
+        fileContent = fileContent + str(binascii.a2b_uu(convert))
+        lenght = lenght - j
+    
+    print(fileContent)
     fileOpen.write(fileContent)
     fileOpen.close()
 
